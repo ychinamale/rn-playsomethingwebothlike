@@ -11,3 +11,8 @@ export const isTokenValid = (tokenObj) => {
   const expiry = (expires_in - 300) * 1000;
   return new Date().getTime() < (retrieved + expiry);
 }
+
+export const isValidShareLink = (link) => {
+  const regex = new RegExp(/^https:\/\/open\.spotify\.com\/playlist\/\w*$/, 'i');
+  return regex.test(link);
+}
