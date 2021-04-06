@@ -1,10 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import SplashScreen from './instance/SplashScreen';
+import { Text, View } from 'react-native';
+import InstanceInit from './instance';
 
 export default function App() {
-  return (
-    <SplashScreen />
-  );
+  return (<InstanceInit>
+    <View>
+      <Text>Something here</Text>
+    </View>
+  </InstanceInit>)
 }
