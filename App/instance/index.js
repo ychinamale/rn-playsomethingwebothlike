@@ -23,7 +23,7 @@ export default function InstanceInit({ children }) {
     setTimeout(() => {
       console.log('Disabling splash screen.');
       setAppIsReady(true);
-    }, 1200);
+    }, 2500);
   }
 
   React.useEffect(()=>{
