@@ -11,7 +11,7 @@ export default function SplashScreen() {
         <Image
           style={{ width: 300, height: 300 }}
           resizeMode="contain"
-          source={require('../../assets/music.gif')}
+          source={require('../../assets/music-green-300.gif')}
         />
         <Text style={styles.text}>Play Something We Both Like</Text>
       </ScrollView>
