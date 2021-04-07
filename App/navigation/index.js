@@ -52,16 +52,17 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
 
         if (route.name === 'Playlists') {
           iconName = isFocused
-            ? 'play-circle'
-            : 'play-circle-outline';
+            ? 'list-circle'
+            : 'list-circle-outline';
         } else if (route.name === 'Home') {
           iconName = isFocused
             ? 'home'
             : 'home-outline';
         } else if (route.name === 'Matches') {
           iconName = isFocused
-            ? 'list-circle'
-            : 'list-circle-outline';
+            ? 'play-circle'
+            : 'play-circle-outline';
+            
         }
 
         const buttonColor = isFocused ? '#36B37E' : 'grey';
