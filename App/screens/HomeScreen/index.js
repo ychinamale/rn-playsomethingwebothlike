@@ -4,7 +4,10 @@ import PlaylistForm from './components/PlaylistForm';
 
 export default function DUMMYSCREEN() {
   return (
-    <View style={{ flex: 1, backgroundColor: 'red', alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{
+      flex: 1, backgroundColor: 'red', alignItems: 'center', justifyContent: 'center',
+    }}
+    >
       <Text>
         HomeScreen, yea!
       </Text>
