@@ -62,7 +62,6 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
           iconName = isFocused
             ? 'play-circle'
             : 'play-circle-outline';
-            
         }
 
         const buttonColor = isFocused ? '#36B37E' : 'grey';
