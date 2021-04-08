@@ -93,11 +93,7 @@ export default function usePlaylistForm() {
       playlistRequests.push(
         promisePlaylist(getID(playlist.url), authorization),
       );
-
-      console.log('requests are', JSON.stringify(playlistRequests, null, 2));
     });
-
-    console.log('Created the promises');
 
     Promise.all(playlistRequests).then((allResponses) => {
       allResponses.forEach((response, index) => {
