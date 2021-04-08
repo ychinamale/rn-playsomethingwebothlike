@@ -12,7 +12,7 @@ export default function InstanceInit({ children }) {
     setTimeout(() => {
       console.log('Disabling splash screen.');
       setAppIsReady(true);
-    }, 2500);
+    }, 3500);
 
     return null;
   };
