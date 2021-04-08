@@ -1,12 +1,14 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import {
-  StyleSheet, Text, TextInput, TouchableOpacity, View,
+  ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View,
 } from 'react-native';
 import usePlaylistForm from './usePlaylistForm';
 
 export default function PlaylistForm() {
-  const { handleSubmit, handleUpdate, playlists } = usePlaylistForm();
+  const {
+    handleSubmit, handleUpdate, isLoading, playlists,
+  } = usePlaylistForm();
 
   return (
     <View style={styles.layout}>
@@ -26,8 +28,12 @@ export default function PlaylistForm() {
           </View>
         );
       })}
-      <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>
-        <Text>Show Playlists</Text>
+      <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+        {
+          isLoading
+            ? <ActivityIndicator color="green" size="small" />
+            : <Text style={{ letterSpacing: 1.2 }}>Get Our Playlists</Text>
+        }
       </TouchableOpacity>
     </View>
   );
@@ -35,8 +41,14 @@ export default function PlaylistForm() {
 
 const styles = StyleSheet.create({
   input: {
-    borderColor: 'green',
+    alignItems: 'center',
+    color: '#676',
+    borderColor: '#7A7',
+    borderRadius: 8,
     borderWidth: 1,
+    height: 42,
+    letterSpacing: 1.1,
+    paddingHorizontal: 8,
     width: 300,
   },
   inputContainer: {
@@ -47,14 +59,26 @@ const styles = StyleSheet.create({
   },
   layout: {
     alignItems: 'center',
-    backgroundColor: 'lightblue',
     flex: 1,
     justifyContent: 'center',
   },
-  submitButton: {
-    borderColor: 'black',
-    borderWidth: 1,
-    marginTop: 12,
-    padding: 12,
+  button: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#cff0db',
+    borderRadius: 6,
+    justifyContent: 'center',
+    height: 48,
+    marginVertical: 12,
+    width: 160,
+    // paddingHorizontal: 24,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 });
