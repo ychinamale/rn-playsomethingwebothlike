@@ -3,8 +3,12 @@ import React from 'react';
 import {
   Image, ScrollView, StyleSheet, Text, View,
 } from 'react-native';
+import { usePlaylists } from '../../features/Playlists';
 
 export default function DUMMYSCREEN() {
+  const playlists = usePlaylists();
+  const { features, ...rest } = playlists[0];
+  console.log('Our first features look like', JSON.stringify(features));
   return (
     <ScrollView
       contentContainerStyle={[styles.layout, styles.centered]}
