@@ -1,6 +1,16 @@
 import React from 'react';
 import { PlaylistsContext } from './container';
 
+export const useResetFeatures = () => {
+  const [, { resetFeatures }] = React.useContext(PlaylistsContext);
+  return resetFeatures;
+};
+
+export const useSetFeatures = () => {
+  const [, { setFeatures }] = React.useContext(PlaylistsContext);
+  return setFeatures;
+};
+
 export const useSetItems = () => {
   const [, { setItems }] = React.useContext(PlaylistsContext);
   return setItems;
