@@ -2,12 +2,16 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import {
-  Image, ScrollView, StyleSheet, Text, View,
+  ActivityIndicator, Image, TouchableOpacity, ScrollView, StyleSheet, Text, View,
 } from 'react-native';
 import { usePlaylists } from '../../../features/Playlists';
 import Accordion from './Accordion';
+import useHandleSubmit from './useHandleSubmit';
 
 export default function PlaylistsView() {
+  const {
+    error, featuresError, handleSubmit, isLoading,
+  } = useHandleSubmit();
   const playlists = usePlaylists();
 
   if (playlists[0].items.length === 0) {
@@ -42,11 +46,42 @@ export default function PlaylistsView() {
           </View>
         );
       })}
+      <View>
+        <TouchableOpacity
+          onPress={handleSubmit}
+          style={styles.button}
+        >
+          {
+            isLoading
+              ? <ActivityIndicator color="green" size="small" />
+              : <Text style={{ letterSpacing: 1.2 }}>Match Us</Text>
+          }
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  button: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#cff0db',
+    borderRadius: 6,
+    justifyContent: 'center',
+    height: 48,
+    marginVertical: 12,
+    width: 160,
+    // paddingHorizontal: 24,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   centered: {
     alignItems: 'center',
     justifyContent: 'center',
