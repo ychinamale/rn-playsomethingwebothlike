@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const initialState = {
   playlists: [
-    { url: '', items: [] },
-    { url: '', items: [] },
+    { url: '', items: [], features: [] },
+    { url: '', items: [], features: [] },
   ],
 };
 
@@ -12,8 +12,19 @@ const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'SET_FEATURES': {
+      const { features, index } = action.payload;
+      const playlistsCopy = deepCopy(state.playlists);
+      const listCopy = deepCopy(state.playlists[index]);
+      listCopy.features = features;
+      playlistsCopy.splice(index, 1, listCopy);
+      return {
+        ...state,
+        playlists: playlistsCopy,
+      };
+    }
     case 'SET_ITEMS': {
-      const { index, items } = action.payload;
+      const { items, index } = action.payload;
       const playlistsCopy = deepCopy(state.playlists);
       const listCopy = deepCopy(state.playlists[index]);
       listCopy.items = items;
@@ -24,12 +35,23 @@ const reducer = (state, action) => {
       };
     }
     case 'SET_URL': {
-      const { index, url } = action.payload;
+      const { url, index } = action.payload;
       const playlistsCopy = deepCopy(state.playlists);
       const listCopy = deepCopy(state.playlists[index]);
       listCopy.url = url;
       playlistsCopy.splice(index, 1, listCopy);
       return {
+        ...state,
+        playlists: playlistsCopy,
+      };
+    }
+    case 'RESET_FEATURES': {
+      const playlistsCopy = state.playlists.map((playlist) => ({
+        ...playlist,
+        features: [],
+      }));
+      return {
+        ...state,
         playlists: playlistsCopy,
       };
     }
@@ -46,11 +68,17 @@ export default function PlaylistsContainer({ children }) {
   const store = [
     state,
     {
+      resetFeatures: () => {
+        dispatch({ type: 'RESET_FEATURES' });
+      },
+      setFeatures: (features, index) => {
+        dispatch({ type: 'SET_FEATURES', payload: { features, index } });
+      },
       setItems: (items, index) => {
-        dispatch({ type: 'SET_ITEMS', payload: { index, items } });
+        dispatch({ type: 'SET_ITEMS', payload: { items, index } });
       },
       setUrl: (url, index) => {
-        dispatch({ type: 'SET_URL', payload: { index, url } });
+        dispatch({ type: 'SET_URL', payload: { url, index } });
       },
     },
   ];
