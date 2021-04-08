@@ -1,9 +1,9 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ScrollView, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
 const TracksDropdown = ({ label, playlist }) => {
   const { url, items } = playlist;
@@ -43,8 +43,8 @@ const TracksDropdown = ({ label, playlist }) => {
         showsVerticalScrollIndicator={false}
         style={dropdownStyles}
       >
-        { items.map((item) => (
-          <View key={item.track.id} style={styles.trackContainer}>
+        { items.map((item, index) => (
+          <View key={`${item.track.id}_${index}`} style={styles.trackContainer}>
             <Text numberOfLines={1}>{ `${item.track.name} by ${item.track.artists[0].name}` }</Text>
           </View>
         ))}
@@ -54,6 +54,7 @@ const TracksDropdown = ({ label, playlist }) => {
 };
 
 TracksDropdown.propTypes = {
+  label: PropTypes.string.isRequired,
   playlist: PropTypes.shape({
     url: PropTypes.string,
     items: PropTypes.arrayOf(
