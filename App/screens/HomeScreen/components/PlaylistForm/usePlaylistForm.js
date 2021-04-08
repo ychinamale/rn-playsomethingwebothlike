@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { isValidShareLink } from '../../../../utils/helpers';
 import { useSetItems, useSetUrl } from '../../../../features/Playlists';
+import { fetchToken } from '../../../../utils/services';
 
 // to mark problematic urls individually
 const initialState = [
@@ -40,6 +42,8 @@ const getID = (url) => url.split('https://open.spotify.com/playlist/')[1];
 export default function usePlaylistForm() {
   const [error, setError] = React.useState('');
   const [fetchPlaylistError, setFetchPlaylistError] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
+  const navigation = useNavigation();
   const [playlists, setPlaylists] = React.useState(initialState);
   const setItems = useSetItems();
   const setUrl = useSetUrl();
@@ -53,33 +57,18 @@ export default function usePlaylistForm() {
     setPlaylists(copyPlaylists);
   };
 
-  const fetchToken = async () => {
-    const config = {
-      method: 'get',
-      url: 'https://SpotifyForTwo.ychinamale.repl.co/token',
-    };
-
-    try {
-      const response = await axios(config);
-      if (response.status >= 200 && response.status < 300) {
-        return response;
-      }
-      return { error: 'Failed to fetch token' };
-    } catch (err) {
-      return TypeError;
-    }
-  };
-
   const handleSubmit = async () => {
     console.log('Tring to submit playlists');
     setError('');
     setFetchPlaylistError('');
+    setIsLoading(true);
 
     // fetch spotify token
     const tokenRes = await fetchToken();
     if (tokenRes.error || tokenRes.status !== 200) {
       console.log('Stopping here', tokenRes);
       setError('Failed to retrieve token');
+      setIsLoading(false);
       return null;
     }
 
@@ -100,10 +89,15 @@ export default function usePlaylistForm() {
         setItems(response.items, index);
         setUrl(playlists[index].url, index);
       });
-    }).catch((err) => {
-      setFetchPlaylistError('Sorry. Failed to fetch one or both playlists');
-      console.log(err);
-    });
+    })
+      .then(() => {
+        setIsLoading(false);
+        navigation.navigate('Playlists');
+      })
+      .catch((err) => {
+        setFetchPlaylistError('Sorry. Failed to fetch one or both playlists');
+        console.log(err);
+      });
 
     return null;
   };
@@ -113,6 +107,7 @@ export default function usePlaylistForm() {
     fetchPlaylistError,
     handleSubmit,
     handleUpdate,
+    isLoading,
     playlists,
   };
 }
