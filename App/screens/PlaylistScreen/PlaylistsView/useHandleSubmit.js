@@ -48,17 +48,11 @@ export default function useHandleSubmit() {
   const handleSubmit = async () => {
     setIsLoading(true);
     // get array of comma-separated track.ids for each playlist
-    const idLists = playlists.map((playlist) => playlist.items.map((item) => {
-      if (!item.track || !item.track.id) { console.log('This one is weird', item); return null; }
-      console.log('OK here', item.track.id);
-      return item.track.id;
-    }).join());
-
-    console.log('idLists is', idLists);
+    const idLists = playlists.map((playlist) => playlist.items.map((item) => item.track.id).join());
 
     const featureRequests = [];
 
-    // fetch spotify token
+    // fetch spotify tokens
     const tokenRes = await fetchToken();
     if (tokenRes.error || tokenRes.status !== 200) {
       console.log('Stopping here', tokenRes);
