@@ -1,28 +1,23 @@
-/* eslint-disable global-require */
 import React from 'react';
 import {
-  Image, ScrollView, StyleSheet, Text, View,
+  ScrollView, StyleSheet, Text,
 } from 'react-native';
-import { usePlaylists } from '../../features/Playlists';
+import MatchesView from './MatchesView';
 
-export default function DUMMYSCREEN() {
-  const playlists = usePlaylists();
-  const { features, ...rest } = playlists[0];
-  console.log('Our first features look like', JSON.stringify(features));
+export default function MatchScreen() {
   return (
     <ScrollView
       contentContainerStyle={[styles.layout, styles.centered]}
       showsVerticalScrollIndicator={false}
       style={{ flex: 1 }}
     >
-      <Image
-        resizeMode="cover"
-        style={styles.image}
-        source={require('../../assets/nothing-yet-green-500.gif')}
-      />
-      <View>
-        <Text style={styles.text}>Nothing to show... yet.</Text>
-      </View>
+      <Text style={{
+        color: 'black', fontSize: 18, fontWeight: 'bold', letterSpacing: 1.2, marginVertical: 12,
+      }}
+      >
+        Top 15 Matches
+      </Text>
+      <MatchesView />
     </ScrollView>
   );
 }
