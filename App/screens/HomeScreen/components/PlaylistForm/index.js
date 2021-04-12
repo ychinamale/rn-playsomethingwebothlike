@@ -4,6 +4,7 @@ import {
   ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View,
 } from 'react-native';
 import usePlaylistForm from './usePlaylistForm';
+import { scaleFont, scaleSize } from '../../../../utils/scaling';
 
 export default function PlaylistForm() {
   const {
@@ -44,15 +45,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     color: '#676',
     borderColor: '#7A7',
-    borderRadius: 8,
-    borderWidth: 1,
-    height: 42,
+    borderRadius: scaleSize(8),
+    borderWidth: scaleSize(1),
+    height: scaleSize(42),
     letterSpacing: 1.1,
-    paddingHorizontal: 8,
-    width: 300,
+    paddingHorizontal: scaleSize(8),
+    width: scaleSize(300),
   },
   inputContainer: {
-    paddingVertical: 12,
+    paddingVertical: scaleSize(12),
   },
   inputError: {
     borderColor: 'red',
@@ -66,11 +67,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: '#cff0db',
-    borderRadius: 6,
+    borderRadius: scaleSize(6),
     justifyContent: 'center',
-    height: 48,
-    marginVertical: 12,
-    width: 160,
+    height: scaleSize(48),
+    marginVertical: scaleSize(12),
+    width: scaleSize(160),
     // paddingHorizontal: 24,
     shadowColor: '#000',
     shadowOffset: {

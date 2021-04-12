@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
   ScrollView, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
+import { scaleFont, scaleSize } from '../../../utils/scaling';
 
 const TracksDropdown = ({ label, playlist }) => {
   const { url, items } = playlist;
@@ -29,10 +30,10 @@ const TracksDropdown = ({ label, playlist }) => {
         style={{
           borderBottomWidth: 1,
           borderBottomColor: 'grey',
-          marginHorizontal: 15,
+          marginHorizontal: scaleSize(15),
         }}
       >
-        <View style={{ flexDirection: 'row', paddingVertical: 8 }}>
+        <View style={{ flexDirection: 'row', paddingVertical: scaleSize(8) }}>
           <View style={styles.dropdownHeader}>
             <Text>{`Show ${label}`}</Text>
           </View>
@@ -71,23 +72,6 @@ TracksDropdown.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  cardLayout: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 15,
-    paddingHorizontal: 15,
-  },
-  cardNumber: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  cardStyle: {
-    backgroundColor: 'blue',
-    borderRadius: 18,
-    height: 160,
-    width: 240,
-  },
   dropdownHeader: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -95,22 +79,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   iconStyle: {
-    width: 36,
-    height: 36,
+    width: scaleSize(36),
+    height: scaleSize(36),
     backgroundColor: 'white',
-    borderRadius: 36,
+    borderRadius: scaleSize(36),
     textAlign: 'center',
     position: 'absolute',
-    bottom: -14,
-    right: 14,
+    bottom: scaleSize(-14),
+    right: scaleSize(14),
   },
   trackContainer: {
     backgroundColor: 'white',
-    marginVertical: 8,
-    marginHorizontal: 8,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 6,
+    marginVertical: scaleSize(8),
+    marginHorizontal: scaleSize(8),
+    paddingVertical: scaleSize(8),
+    paddingHorizontal: scaleSize(12),
+    borderRadius: scaleSize(6),
     shadowColor: 'blue',
     shadowOffset: {
       width: 0,
@@ -120,8 +104,8 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
-  subtext: { color: 'white', fontSize: 10 },
-  thumbnail: { resizeMode: 'contain', width: 60 },
+  subtext: { color: 'white', fontSize: scaleFont(10) },
+  thumbnail: { resizeMode: 'contain', width: scaleFont(60) },
 });
 
 export { TracksDropdown as default };

@@ -7,6 +7,7 @@ import {
 import { usePlaylists } from '../../../features/Playlists';
 import Accordion from './Accordion';
 import useHandleSubmit from './useHandleSubmit';
+import { scaleFont, scaleSize } from '../../../utils/scaling';
 
 export default function PlaylistsView() {
   const {
@@ -67,11 +68,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: '#cff0db',
-    borderRadius: 6,
+    borderRadius: scaleSize(6),
     justifyContent: 'center',
-    height: 48,
-    marginVertical: 12,
-    width: 160,
+    height: scaleSize(48),
+    marginVertical: scaleSize(12),
+    width: scaleSize(160),
     // paddingHorizontal: 24,
     shadowColor: '#000',
     shadowOffset: {
@@ -87,21 +88,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   expandButton: {
-    paddingVertical: 12,
+    paddingVertical: scaleSize(12),
   },
   image: {
-    height: 300,
-    width: 300,
+    height: scaleSize(300),
+    width: scaleSize(300),
   },
   layout: {
     flex: 1,
     flexGrow: 1,
-    paddingVertical: 36,
-    paddingHorizontal: 12,
+    paddingVertical: scaleSize(36),
+    paddingHorizontal: scaleSize(12),
   },
   text: {
     color: 'green',
-    fontSize: 16,
+    fontSize: scaleFont(16),
     fontStyle: 'italic',
     letterSpacing: 1.2,
   },

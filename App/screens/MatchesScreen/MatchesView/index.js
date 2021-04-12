@@ -4,6 +4,7 @@ import {
   Image, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import { usePlaylists } from '../../../features/Playlists';
+import { scaleFont, scaleSize } from '../../../utils/scaling';
 
 export default function MatchesView() {
   const matches = [];
@@ -80,12 +81,12 @@ export default function MatchesView() {
             style={{
               alignItems: 'center',
               backgroundColor: 'white',
-              borderRadius: 8,
+              borderRadius: scaleSize(8),
               flex: 1,
-              height: 42,
+              height: scaleSize(42),
               justifyContent: 'center',
-              margin: 8,
-              width: 60,
+              margin: scaleSize(8),
+              width: scaleSize(60),
               shadowColor: '#000',
               shadowOffset: {
                 width: 0,
@@ -100,7 +101,7 @@ export default function MatchesView() {
               {`${(match.similarity * 100).toFixed(2)}`}
             </Text>
           </TouchableOpacity>
-          <View style={{ flex: 5, alignItems: 'center', paddingHorizontal: 12 }}>
+          <View style={{ flex: 5, alignItems: 'center', paddingHorizontal: scaleSize(12) }}>
             <Text numberOfLines={1} style={styles.text}>
               {`${match.trackA.name}`}
             </Text>
@@ -120,22 +121,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: '#cff0db',
-    borderRadius: 6,
+    borderRadius: scaleSize(6),
     justifyContent: 'center',
-    height: 48,
-    marginVertical: 12,
-    width: 160,
+    height: scaleSize(48),
+    marginVertical: scaleSize(12),
+    width: scaleSize(160),
   },
   centered: {
     alignItems: 'center',
     justifyContent: 'center',
   },
   expandButton: {
-    paddingVertical: 12,
+    paddingVertical: scaleSize(12),
   },
   image: {
-    height: 300,
-    width: 300,
+    height: scaleSize(300),
+    width: scaleSize(300),
   },
   layout: {
   },
@@ -146,13 +147,13 @@ const styles = StyleSheet.create({
   },
   trackArea: {
     backgroundColor: '#1db954',
-    marginHorizontal: 4,
-    marginVertical: 4,
+    marginHorizontal: scaleSize(4),
+    marginVertical: scaleSize(4),
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 8,
-    width: 360,
-    paddingVertical: 6,
+    borderRadius: scaleSize(8),
+    width: scaleSize(360),
+    paddingVertical: scaleSize(6),
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
