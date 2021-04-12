@@ -30,10 +30,10 @@ export default function PlaylistsView() {
   }
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.layout}
+    <View
+      // contentContainerStyle={styles.layout}
       showsVerticalScrollIndicator={false}
-      style={{ flex: 1 }}
+      style={styles.layout}
     >
       { playlists.map((playlist, index) => {
         const label = `Playlist ${index + 1}`;
@@ -58,7 +58,7 @@ export default function PlaylistsView() {
           }
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     width: 300,
   },
   layout: {
+    flex: 1,
     flexGrow: 1,
     paddingVertical: 36,
     paddingHorizontal: 12,
