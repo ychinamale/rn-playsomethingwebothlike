@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet } from 'react-native';
 import PlaylistsView from './PlaylistsView';
 import { scaleFont, scaleSize } from '../../utils/scaling';
 
-export default function DUMMYSCREEN() {
+export default function PlaylistScreen() {
   return (
     <ScrollView
       contentContainerStyle={[styles.layout, styles.centered]}
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   layout: {
     backgroundColor: 'white',
     flexGrow: 1,
-    paddingVertical: scaleSize(36),
+    paddingVertical: scaleSize(12),
     paddingHorizontal: scaleSize(12),
   },
   text: {
