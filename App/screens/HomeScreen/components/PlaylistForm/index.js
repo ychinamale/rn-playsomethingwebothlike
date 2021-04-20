@@ -25,6 +25,7 @@ export default function PlaylistForm() {
               value={playlist.url}
               onChangeText={(text) => handleUpdate(index, text)}
               style={inputStyles}
+              placeholder={`Playlist ${index + 1}`}
             />
           </View>
         );
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     borderWidth: scaleSize(1),
     height: scaleSize(42),
     letterSpacing: 1.1,
-    paddingHorizontal: scaleSize(8),
+    paddingHorizontal: scaleSize(10),
     width: scaleSize(300),
   },
   inputContainer: {
@@ -57,10 +58,10 @@ const styles = StyleSheet.create({
   },
   inputError: {
     borderColor: 'red',
+    borderWidth: scaleSize(2),
   },
   layout: {
     alignItems: 'center',
-    flex: 1,
     justifyContent: 'center',
   },
   button: {
