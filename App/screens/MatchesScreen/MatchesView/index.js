@@ -24,7 +24,7 @@ export default function MatchesView() {
           source={require('../../../assets/nothing-yet-green-500.gif')}
         />
         <View>
-          <Text style={styles.text}>Nothing to show... yet.</Text>
+          <Text style={styles.nothingText}>Nothing to show... yet.</Text>
         </View>
       </View>
     );
@@ -71,6 +71,9 @@ export default function MatchesView() {
 
   return (
     <View style={styles.layout}>
+      <Text style={styles.headingText}>
+        Your Top 15 Matches
+      </Text>
       { sortedMatches.slice(0, 15).map((match) => (
         <View
           key={match.trackA.name + match.trackB.name}
@@ -134,11 +137,27 @@ const styles = StyleSheet.create({
   expandButton: {
     paddingVertical: scaleSize(12),
   },
+  headingText: {
+    color: '#1DB954',
+    fontSize: scaleFont(20),
+    fontWeight: 'bold',
+    letterSpacing: 1.2,
+    textAlign: 'center',
+    textShadowColor: '#eee',
+    textShadowOffset: { width: scaleSize(2), height: scaleSize(4) },
+    textShadowRadius: 2,
+    height: scaleSize(48),
+    marginTop: scaleSize(12),
+  },
   image: {
     height: scaleSize(300),
     width: scaleSize(300),
   },
-  layout: {
+  nothingText: {
+    color: 'green',
+    fontSize: scaleFont(16),
+    fontStyle: 'italic',
+    letterSpacing: 1.2,
   },
   text: {
     color: 'white',
