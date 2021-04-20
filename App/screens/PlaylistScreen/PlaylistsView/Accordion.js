@@ -23,19 +23,25 @@ const TracksDropdown = ({ label, playlist }) => {
     dropdownStyles.push({ height: 0 });
   }
 
+  const labelText = isOpen ? `Hide ${label}` : `Show ${label}`;
+
   return (
     <View>
       <TouchableOpacity
         onPress={() => toggleOpen()}
         style={{
+          alignSelf: 'center',
           borderBottomWidth: 1,
-          borderBottomColor: 'grey',
+          borderTopWidth: 1,
+          borderTopColor: 'lightgrey',
+          borderBottomColor: 'lightgrey',
           marginHorizontal: scaleSize(15),
+          width: scaleSize(180),
         }}
       >
         <View style={{ flexDirection: 'row', paddingVertical: scaleSize(8) }}>
           <View style={styles.dropdownHeader}>
-            <Text>{`Show ${label}`}</Text>
+            <Text style={styles.headingText}>{labelText}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -77,6 +83,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     flexDirection: 'row',
+  },
+  headingText: {
+    color: '#1DB954',
+    fontWeight: 'bold',
+    letterSpacing: 1.2,
+    textAlign: 'center',
+    textShadowColor: '#eee',
+    textShadowOffset: { width: scaleSize(2), height: scaleSize(2) },
+    textShadowRadius: scaleSize(2),
   },
   iconStyle: {
     width: scaleSize(36),
