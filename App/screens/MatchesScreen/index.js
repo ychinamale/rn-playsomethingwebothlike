@@ -12,12 +12,6 @@ export default function MatchScreen() {
       showsVerticalScrollIndicator={false}
       style={{ flex: 1 }}
     >
-      <Text style={{
-        color: 'black', fontSize: scaleFont(18), fontWeight: 'bold', letterSpacing: 1.2, marginVertical: scaleSize(12),
-      }}
-      >
-        Top 15 Matches
-      </Text>
       <MatchesView />
     </ScrollView>
   );
