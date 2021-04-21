@@ -11,6 +11,12 @@ const initialState = [
   { url: '', items: [], invalidLink: false },
 ];
 
+const isFilled = (playlist) => playlist.url.length > 0;
+const areUrlsFilled = (playlists) => playlists.every(isFilled);
+
+const isValid = (playlist) => !playlist.invalidLink;
+const areLinksValid = (playlists) => playlists.every(isValid);
+
 const promisePlaylist = (id, authorization) => new Promise((resolve, reject) => {
   const config = {
     headers: {
@@ -62,6 +68,23 @@ export default function usePlaylistForm() {
     setError('');
     setFetchPlaylistError('');
     setIsLoading(true);
+
+    if (!areUrlsFilled(playlists)) {
+      console.log('You need to provide both links', playlists);
+      setError('You need to provide both links');
+      setIsLoading(false);
+      return null;
+    }
+    console.log('It says the links are provided');
+
+    if (!areLinksValid(playlists)) {
+      console.log('Both links must be valid');
+      setError('Both links must be valid');
+      setIsLoading(false);
+      return null;
+    }
+
+    console.log('It says the links are valid');
 
     // fetch spotify token
     const tokenRes = await fetchToken();
