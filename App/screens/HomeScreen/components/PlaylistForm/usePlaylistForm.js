@@ -96,6 +96,7 @@ export default function usePlaylistForm() {
       })
       .catch((err) => {
         setFetchPlaylistError('Sorry. Failed to fetch one or both playlists');
+        setIsLoading(false);
         console.log(err);
       });
 
